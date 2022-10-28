@@ -2,6 +2,8 @@
 """
 Created on Thu Oct 27 17:04:56 2022
 
+...... one equation for each turbine rating .......
+
 @author: rrolph
 """
 
@@ -78,6 +80,7 @@ for depth, turbine, dts in product(depths, turbines, distances):
         "site_depth": project.config["site.depth"],
         "distance_to_shore": project.config["site.distance"],
         "jacket_install": project.system_costs['JacketInstallation'],
+        "turbine_rating": project.config["turbine.turbine_rating"]
     }
 
     data.append(res)
@@ -104,4 +107,5 @@ distance_to_shore    1.000000e+01
 jacket_install       3.321548e+07
 Name: 0, dtype: float64
 '''
+
 
