@@ -1,0 +1,20 @@
+turbine:
+    blade:
+      deck_space: 985.0074914235503
+      length: 134.1654398157423
+      mass: 93.82789779513215
+      type: Blade
+    hub_height: 168.0
+    nacelle:
+      deck_space: null
+      mass: 574.3367501413601
+      type: Nacelle
+    rated_windspeed: 10.22884788634207
+    rotor_diameter: 278.035
+    tower:
+      deck_space: 65.49703880267148
+      length: 147.386
+      mass: 1333.2922380721807
+      sections: null
+      type: Tower
+    turbine_rating: 17.0

@@ -1,0 +1,10 @@
+jacket:
+  unit_cost: 3798294.982456868
+  deck_space: 201.8120760772077
+  diameter: 20.090399502110838
+  height: 25.0
+  mass: 762.2482223183226
+transition_piece:
+  deck_space: 25.0
+  mass: 100.0
+  unit_cost: 1000.0

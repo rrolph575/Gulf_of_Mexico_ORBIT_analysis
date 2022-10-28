@@ -1,0 +1,43 @@
+
+#-Run ORBIT and calculate jacket installation costs
+#For each turbine
+#For each depth (jacket design)
+#For each distance to port (upper bound for now is 300 km, but we have coords of POIs from Melinda).
+                                           
+base:
+  plant:
+    num_turbines: 50
+  wtiv: example_wtiv
+  feeder: example_heavy_feeder
+  num_feeders: 2
+  site:
+    depth: 50
+keep_inputs:
+- turbine.turbine_rating
+module: TurbineInstallation
+outputs:
+  turbine_installation_capex: installation_capex
+params:
+  site.depth:  # i changed this to site.depth
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+  - 60
+  site.distance:  # values are placeholder
+  - 100
+  - 200
+  - 300
+  #turbine:  # i should update these to 15, 17lowSP, 17, but they are all configs for diff depths, should i add an if statement or loop through the depths and have it choose turbine & jacket based on depth?
+  #- 6MW_generic
+  #- 8MW_generic
+  #- 10MW_generic
+  #- 12MW_generic
+  #- 15MW_generic
+  #jacket:   # i added this in..  
+  
+models:
+  turbine_installation_capex:
+  - site.distance
+  - turbine.turbine_rating

@@ -1,0 +1,11 @@
+jacket:
+  unit_cost: 4672151.109964601
+  deck_space: 322.11032376964573
+  diameter: 25.381502074134453
+  height: 45.0
+  mass: 1135.1686287370194
+transition_piece:
+  deck_space: 25.0
+  mass: 100.0
+  unit_cost: 1000.0
+#turbine: 15mw

@@ -1,0 +1,51 @@
+fixed_charge_rate: 0.071
+development_factor: 0.04
+proj_mgmt_factor: 0.02
+construction_insurance: 0.0115
+project_completion: 0.0115
+decomissioning: 0.1725
+procurement_contingency: 0.0575
+install_contingency: 0.345
+lease_price: 50000000
+confin_factor: 1.043012405771711
+interest_during_construction: 0.044
+tax_rate: 0.26
+turbine: 2015::turbine::monopile_tower + 2015::turbine::rna
+turbine_install: turbine_installation_capex
+substructure: monopile_capex + scour_protection_capex
+sub_install: monopile_installation_capex + scour_protection_installation_capex
+array: array_system_capex
+export: export_system_capex + oss_system_capex
+electrical_install: array_system_installation_capex + export_system_installation_capex
+  + oss_installation_capex
+grid: 2015::grid::grid_connection
+support: substructure
+install: turbine_install + sub_install + electrical_install
+electrical: array + export + grid
+subcomponents: support + install + electrical
+development: (development_factor * (subcomponents + turbine))
+proj_mgmt: proj_mgmt_factor * (subcomponents + turbine)
+bos: lease_price + development + proj_mgmt + subcomponents
+constr_ins: construction_insurance * (bos + turbine)
+decomm: decomissioning * install
+proj_comp: project_completion * (bos + turbine)
+procurement_cont: procurement_contingency * (bos - install + turbine)
+install_cont: install_contingency * install
+cons_financing: (confin_factor - 1) * (constr_ins + decomm + proj_comp + procurement_cont
+  + install_cont + bos + turbine)
+soft: constr_ins + decomm + proj_comp + procurement_cont + install_cont + cons_financing
+capex: (bos + soft + turbine) * capex_multi
+operations: 18880383
+maintenance: 2015::maintenance::fixed
+opex: operations + maintenance
+adjusted_gcf: (gcf * (0.006 * turbine_capacity + 0.9691))
+wake: 2015::losses::wake
+elec: 2015::losses::electrical
+avail: 2015::losses::avail_fixed
+environmental: 0.0159
+technical: 0.01
+site_specific: 1 - (1 - wake) * (1 - elec) * (1 - avail)
+total_losses: (1 - (1 - environmental) * (1 - technical) * (1 - site_specific))
+ncf: adjusted_gcf * (1 - total_losses)
+lcoe: (capex * fixed_charge_rate + opex) / (ncf * turbine_capacity * num_turbines
+  * 8760)
